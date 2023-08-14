@@ -1,3 +1,5 @@
+import allure
+from allure_commons.types import AttachmentType
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -36,8 +38,10 @@ class simpleFormDemo:
 
             if message in actual_msg:
                 assert True
+                allure.attach(self.driver.get_screenshot_as_png(), name="test_single_input_field_PASS", attachment_type=AttachmentType.PNG)
                 logging.info("Message assertion [PASS]")
             else:
+                allure.attach(self.driver.get_screenshot_as_png(), name="test_single_input_field_FAIL", attachment_type=AttachmentType.PNG)
                 assert False
                 logging.error("Message assertion [FAIL]")
             time.sleep(5)
@@ -63,8 +67,10 @@ class simpleFormDemo:
             logging.info("Actual summary captured from UI = [%s]" %actual_sum)
             if int(total_sum) == int(actual_sum):
                 assert True
+                allure.attach(self.driver.get_screenshot_as_png(), name="test_single_input_field_PASS", attachment_type=AttachmentType.PNG)
                 logging.info("Total Summary validation [PASS]")
             else:
+                allure.attach(self.driver.get_screenshot_as_png(), name="test_two_input_field_FAIL", attachment_type=AttachmentType.PNG)
                 assert False
                 logging.error("Total Summary validation [FAIL]")
             time.sleep(5)
