@@ -49,4 +49,4 @@ Replace `[allure_directory]` with the path to the directory containing the Allur
 
 Feel free to explore the various features and insights provided by the Allure report to gain a better understanding of your test results.
 
-Happy testing with Selenium in the
+Happy testing with Selenium in the Selenium Playground! If you have any questions or suggestions, please don't hesitate to reach out.
