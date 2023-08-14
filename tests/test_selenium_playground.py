@@ -1,3 +1,9 @@
+# Author: Prayogo Dewantoro
+# Created Date: 2023-08-11
+# Description: This script demonstrates the implementation of a Selenium playground using the Page Object Model (POM) design pattern.
+# The script includes various test cases and configurations for web automation, along with generating Allure reports for better test visualization.
+
+
 import allure
 import pytest
 import logging

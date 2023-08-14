@@ -1,3 +1,9 @@
+# Author: Prayogo Dewantoro
+# Created Date: 2023-08-11
+# Description: This script demonstrates the implementation of a Selenium playground using the Page Object Model (POM) design pattern.
+# The script includes various test cases and configurations for web automation, along with generating Allure reports for better test visualization.
+
+
 import allure
 from allure_commons.types import AttachmentType
 from selenium import webdriver
@@ -24,7 +30,8 @@ class simpleFormDemo:
     def test_single_input_field(self):
         if WebDriverWait(self.driver, 60).until(EC.visibility_of_element_located(((By.XPATH, '//h1[.="Selenium Playground"]')))).is_displayed():
             logging.info("Selenium Playground Heading is displayed")
-            WebDriverWait(self.driver, 60).until(EC.element_to_be_clickable(((By.XPATH, '//a[.="Simple Form Demo"]')))).click()
+            # WebDriverWait(self.driver, 60).until(EC.element_to_be_clickable(((By.XPATH, '//a[.="Simple Form Demo"]')))).click()
+            self.driver.execute_script("arguments[0].click();", self.driver.find_element(By.XPATH, '//a[.="Simple Form Demo"]'))
             logging.info("Clicked on Simple Form Demo Link")
             WebDriverWait(self.driver, 60).until(EC.visibility_of_element_located(((By.XPATH, '//h1[.="Simple Form Demo"]')))).is_displayed()
             logging.info("Redirected to Simple Form Demo Page")
