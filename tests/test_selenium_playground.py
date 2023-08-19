@@ -9,6 +9,7 @@ import pytest
 import logging
 from pages.simple_form_demo import simpleFormDemo
 from pages.input_form_submit import inputFormSubmit
+from pages.upload_file_demo import uploadFileDemo
 
 @allure.title("TC001 - Single Input Field")
 @allure.severity(allure.severity_level.NORMAL)
@@ -27,3 +28,9 @@ def test_TC002(conftest):
 def test_TC003(conftest):
     tc003 = inputFormSubmit(conftest)
     tc003.test_input_form_validations()
+
+@allure.title("TC004 - Upload File Demo")
+@allure.severity(allure.severity_level.NORMAL)
+def test_TC004(conftest):
+    tc004 = uploadFileDemo(conftest)
+    tc004.test_upload_file_demo()
