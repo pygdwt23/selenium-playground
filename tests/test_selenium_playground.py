@@ -10,6 +10,7 @@ import logging
 from pages.simple_form_demo import simpleFormDemo
 from pages.input_form_submit import inputFormSubmit
 from pages.upload_file_demo import uploadFileDemo
+from pages.drag_and_drop_sliders import dragAndDropSliders
 
 @allure.title("TC001 - Single Input Field")
 @allure.severity(allure.severity_level.NORMAL)
@@ -34,3 +35,16 @@ def test_TC003(conftest):
 def test_TC004(conftest):
     tc004 = uploadFileDemo(conftest)
     tc004.test_upload_file_demo()
+
+@allure.title("TC005 - Drag and Drop Sliders Demo")
+@allure.severity(allure.severity_level.NORMAL)
+def test_TC005(conftest):
+    tc005 = dragAndDropSliders(conftest)
+    tc005.test_drag_and_drop_sliders_1()
+    tc005.test_drag_and_drop_sliders_2()
+    tc005.test_drag_and_drop_sliders_3()
+    tc005.test_drag_and_drop_sliders_4()
+    tc005.test_drag_and_drop_sliders_5()
+    tc005.test_drag_and_drop_sliders_6()
+    tc005.test_drag_and_drop_sliders_7()
+    tc005.test_drag_and_drop_sliders_8()
