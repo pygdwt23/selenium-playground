@@ -3,7 +3,7 @@
 # Description: This script demonstrates the implementation of a Selenium playground using the Page Object Model (POM) design pattern.
 # The script includes various test cases and configurations for web automation, along with generating Allure reports for better test visualization.
 
-
+import csv
 import allure
 import pytest
 import logging
@@ -12,6 +12,19 @@ from pages.input_form_submit import inputFormSubmit
 from pages.upload_file_demo import uploadFileDemo
 from pages.drag_and_drop_sliders import dragAndDropSliders
 from pages.progress_bar_modal import progressBarModal
+from pages.date_picker_demo import datePickerDemo
+
+testdata_path = './test_data/datepicker.csv'
+
+def read_test_data_from_csv():
+    testdata = []
+    with open(testdata_path, newline='')as csvfile:
+        data = csv.reader(csvfile, delimiter=',')
+        next(data)
+        for row in data:
+            testdata.append(row)
+    return testdata
+
 
 @allure.title("TC001 - Single Input Field")
 @allure.severity(allure.severity_level.NORMAL)
@@ -55,3 +68,10 @@ def test_TC005(conftest):
 def test_TC006(conftest):
     tc006 = progressBarModal(conftest)
     tc006.test_progress_bar_modal()
+
+@allure.title("TC007 - JQuery Date Picker Demo")
+@allure.severity(allure.severity_level.NORMAL)
+@pytest.mark.parametrize("from_date,to_date", read_test_data_from_csv())
+def test_TC007(conftest, from_date, to_date):
+    tc007 = datePickerDemo(conftest)
+    tc007.test_date_picker(from_date,to_date)
