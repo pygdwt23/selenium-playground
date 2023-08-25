@@ -11,6 +11,7 @@ from pages.simple_form_demo import simpleFormDemo
 from pages.input_form_submit import inputFormSubmit
 from pages.upload_file_demo import uploadFileDemo
 from pages.drag_and_drop_sliders import dragAndDropSliders
+from pages.progress_bar_modal import progressBarModal
 
 @allure.title("TC001 - Single Input Field")
 @allure.severity(allure.severity_level.NORMAL)
@@ -48,3 +49,9 @@ def test_TC005(conftest):
     tc005.test_drag_and_drop_sliders_6()
     tc005.test_drag_and_drop_sliders_7()
     tc005.test_drag_and_drop_sliders_8()
+
+@allure.title("TC006 - Progress Bar Modal Demo")
+@allure.severity(allure.severity_level.NORMAL)
+def test_TC006(conftest):
+    tc006 = progressBarModal(conftest)
+    tc006.test_progress_bar_modal()
