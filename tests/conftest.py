@@ -74,7 +74,7 @@ def conftest(browser):
         # firefox_options.set_preference('excludeSwitches', ['enable-automation'])
         firefox_service = Service(GeckoDriverManager().install())
         driver = webdriver.Firefox(service=firefox_service, options=firefox_options)
-
+        
     driver.delete_all_cookies()
     driver.maximize_window()
     print('Run started at:' +str(datetime.datetime.today()))

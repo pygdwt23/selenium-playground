@@ -4,6 +4,9 @@
 # The script includes various test cases and configurations for web automation, along with generating Allure reports for better test visualization.
 
 import csv
+import pandas as pd
+import openpyxl
+import xlrd
 import allure
 import pytest
 import logging
@@ -15,6 +18,8 @@ from pages.progress_bar_modal import progressBarModal
 from pages.date_picker_demo import datePickerDemo
 
 testdata_path = './test_data/datepicker.csv'
+# testdata_path = './test_data/datepicker.xlsx'
+write_data_path = './test_data/datepicker.csv'
 
 def read_test_data_from_csv():
     testdata = []
@@ -24,7 +29,6 @@ def read_test_data_from_csv():
         for row in data:
             testdata.append(row)
     return testdata
-
 
 @allure.title("TC001 - Single Input Field")
 @allure.severity(allure.severity_level.NORMAL)
@@ -74,4 +78,5 @@ def test_TC006(conftest):
 @pytest.mark.parametrize("from_date,to_date", read_test_data_from_csv())
 def test_TC007(conftest, from_date, to_date):
     tc007 = datePickerDemo(conftest)
-    tc007.test_date_picker(from_date,to_date)
+    # tc007.test_date_picker_by_send_keys(from_date,to_date)
+    tc007.test_date_picker_by_condition(from_date, to_date)
