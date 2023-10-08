@@ -11,16 +11,12 @@ import json
 import datetime
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.edge.service import Service as EdgeService
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
-from selenium.webdriver.firefox.service import Service
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.edge.options import Options
-from selenium.webdriver.firefox.options import Options
-from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
-from selenium.webdriver.ie.options import Options
+from selenium.webdriver.firefox.service import Service as FirefoxService
+
 
 CONFIG_PATH = '/Users/admin/PycharmProjects/selenium-playground/config.json'
 baseurl = "https://www.lambdatest.com/selenium-playground/"
@@ -51,9 +47,9 @@ def conftest(browser):
         # chrome_options.binary_location = chropath
         chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
         chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
-        chrome_service= Service(ChromeDriverManager().install())
-        # driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
-        driver = webdriver.Chrome(options=chrome_options)
+        chrome_service= ChromeService(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
+        # driver = webdriver.Chrome(options=chrome_options)
     elif browser in ['IE', 'edge', 'Edge']:
         edge_options = webdriver.EdgeOptions()
         edge_options.add_argument('--incognito')
@@ -72,11 +68,12 @@ def conftest(browser):
         # firefox_options.set_preference('--ignore-ssl-errors=yes')
         # firefox_options.set_preference('excludeSwitches', ['enable-logging'])
         # firefox_options.set_preference('excludeSwitches', ['enable-automation'])
-        firefox_service = Service(GeckoDriverManager().install())
+        firefox_service = FirefoxService(GeckoDriverManager().install())
         driver = webdriver.Firefox(service=firefox_service, options=firefox_options)
         
     driver.delete_all_cookies()
     driver.maximize_window()
+    logging.info(f'Browser selected: {browser}')
     print('Run started at:' +str(datetime.datetime.today()))
     logging.info("Base URL: %s" %baseurl)
     driver.implicitly_wait(10)
