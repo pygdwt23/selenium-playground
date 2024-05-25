@@ -40,6 +40,7 @@ def conftest(browser):
     if browser in ['Chrome', 'chrome']:
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--incognito')
+        chrome_options.add_argument('--headless')
         # chrome_options.add_argument('--ignore-certificate-errors')
         chrome_options.add_argument('--test-type')
         chrome_options.add_argument('--ignore-ssl-errors=yes')
