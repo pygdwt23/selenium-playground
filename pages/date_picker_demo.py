@@ -57,10 +57,13 @@ class datePickerDemo:
         # FROM DATE
         self.driver.find_element(By.XPATH, '//input[@id="from"]').click()
 
+        # formatted_date = datetime.strptime(from_date, "%Y-%m-%d %H:%M:%S")
         formatted_date = datetime.strptime(from_date, "%m/%d/%Y")
         expected_from_day = formatted_date.day
         expected_from_month = formatted_date.month
         expected_from_year = formatted_date.year
+
+        formatted_from_date = formatted_date.strftime("%m/%d/%Y")
 
         from_month_str = calendar.month_abbr[expected_from_month]
         current_from_year_str = self.driver.find_element(By.XPATH, "//span[@class='ui-datepicker-year']").text
@@ -86,9 +89,9 @@ class datePickerDemo:
 
         # Validation / Assertion
         from_date_selected = self.driver.find_element(By.XPATH, "//input[@id='from']").get_attribute("value")
-        logging.info("Expected date from testdata: [%s]" %from_date)
+        logging.info("Expected date from testdata: [%s]" %formatted_from_date)
         logging.info("Captured date from UI: [%s]" %from_date_selected)
-        if from_date_selected == from_date:
+        if from_date_selected == formatted_from_date:
             logging.info("From date validation: [PASSED]")
             assert True
         else:
@@ -100,10 +103,13 @@ class datePickerDemo:
         # TO DATE
         self.driver.find_element(By.XPATH, "//input[@id='to']").click()
 
+        # formatted_date = datetime.strptime(to_date, "%Y-%m-%d %H:%M:%S")
         formatted_date = datetime.strptime(to_date, "%m/%d/%Y")
         expected_to_day = formatted_date.day
         expected_to_month = formatted_date.month
         expected_to_year = formatted_date.year
+
+        formatted_to_date = formatted_date.strftime("%m/%d/%Y")
 
         to_month_str = calendar.month_abbr[expected_to_month]
         current_to_year_str = self.driver.find_element(By.XPATH, "//span[@class='ui-datepicker-year']").text
@@ -129,9 +135,9 @@ class datePickerDemo:
 
         # Validation / Assertion
         to_date_selected = self.driver.find_element(By.XPATH, "//input[@id='to']").get_attribute("value")
-        logging.info("Expected to date from testdata: [%s]" % to_date)
+        logging.info("Expected to date from testdata: [%s]" % formatted_to_date)
         logging.info("Captured to date from UI: [%s]" % to_date_selected)
-        if to_date_selected == to_date:
+        if to_date_selected == formatted_to_date:
             logging.info("To date validation: [PASSED]")
             assert True
         else:

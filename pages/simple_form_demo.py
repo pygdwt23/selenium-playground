@@ -78,8 +78,8 @@ class simpleFormDemo:
                 logging.info("Total Summary validation [PASS]")
             else:
                 allure.attach(self.driver.get_screenshot_as_png(), name="test_two_input_field_FAIL", attachment_type=AttachmentType.PNG)
-                assert False
                 logging.error("Total Summary validation [FAIL]")
+                assert False
             time.sleep(5)
 
 
